@@ -11,23 +11,22 @@ from modules.mute import mute_swap
 from modules.spase_fi import spase_fi_swap
 from modules.zk_swap import zk_swap_swap
 
-amount_dep = [0.01,0.02] # min,max кол-во ЕТН для вывода
+amount_dep = [0.015,0.03] # min,max кол-во ЕТН для вывода
 amount_swap = [0.0003,0.0004] # min,max кол-во ЕТН для свапов woofi\1inch
 protsent_swap_ = [0.6,0.7] # % от денег на аке которое будем свапать maverik\obos
 ostatok= [0.0014,0.0018] # остаток денег на кошельке
-time_tx = [10,50] #задержка между транзакциями 
+time_tx = [10,20] #задержка между транзакциями 
 time_akks = [10,50] #задержка между аками
 time_potok = 10 #задержка между запусками потоков
-n_swap = 4
-n_g = [3,5] # количество свапов
-max_gas = 40 # лимит газа для транзакций 
+n_swap = 2
+max_gas = 70 # лимит газа для транзакций 
 file_birgh = 'adres_birgh.txt' # адреса okx для выода на них
 file_wal_1 = 'wal.txt' # файл аков которые будем прогонять
 n_potok = 1 # количество потоков
 
 OKX_KEYS = {
     'account_1' : {
-        'api_key'   : '-ab66-45bd-8452-e19c235df717',
+        'api_key'   : '--45bd-8452-e19c235df717',
         'api_secret': '',
         'password'  : '!',
     }
@@ -52,8 +51,9 @@ def swwaps_(wal:Wal,w3:Web3):
 
 def swawps_osnova(wal:Wal,w3:Web3):
     balanse_usdc = balanse_token(wal,w3,usdc.contract)
-    swpalki = [swap_obos,mute_swap]
-    if balanse_usdc > 1000000:
+    swpalki = [swap_obos,mute_swap,mute_swap]
+                      
+    if balanse_usdc > 10000000:
         amount = balanse_usdc
         res = random.choice(swpalki)(wal,usdc.contract,eth.contract,amount)
         if res != 1:
@@ -99,19 +99,14 @@ def run(wal:Wal):
         try:
             gass(max_gas)
             res = swawps_osnova(wal,w3)
-            rand_massovka = random.randint(2,4)
-            g = 0
-            while True:
+            rand_massovka = random.randint(0,3)
+            if rand_massovka > 0:
                 time.sleep(random.randint(time_tx[0],time_tx[1]))
-                if rand_massovka > g:
-                    try:
-                        gass(max_gas)
-                        swwaps_(wal,w3)
-                        g = g +1
-                    except Exception as a:
-                        logging.error(f'{wal.adress} {str(a)}')
-                else:
-                    break
+                try:
+                    gass(max_gas)
+                    swwaps_(wal,w3)
+                except Exception as a:
+                    logging.error(f'{wal.adress} {str(a)}')
             n  = n + res
             time.sleep(random.randint(time_tx[0],time_tx[1]))
             if n == n_swaps:
@@ -131,7 +126,7 @@ def main(q):
     while True:
         time.sleep(q*time_potok)
         prvat_key = wallett(file_wal_1)
-        #wallett_del(file_wal_1)
+        wallett_del(file_wal_1)
         wal = aka(prvat_key,zk)
         logging.info(f'{wal.adress} start')
         #try:

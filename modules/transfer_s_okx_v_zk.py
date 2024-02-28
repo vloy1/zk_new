@@ -75,9 +75,9 @@ def value_okx():
 
 def okx_withdraw(wallet, amount_min, amount_max,OKX_KEYS):
 
-    CHAIN = 'ERC20'
-    SYMBOL = 'MEME'
-    FEE = 401.60 # комса на вывод
+    CHAIN = 'zkSync Era'
+    SYMBOL = 'ETH'
+    FEE = 0.00015 # комса на вывод
     amount_from = amount_min
     amount_to = amount_max
     SUB_ACC = value_okx()

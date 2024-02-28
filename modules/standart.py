@@ -128,7 +128,7 @@ def balanse_token(wal:Wal,w3,token:str):
 def gass(quantity_gas):
     n = 0
     while True:
-        web3 = Web3(Web3.HTTPProvider('https://ethereum-mainnet.core.chainstack.com/70ae3a3e68a6c1ed594168c8a642e4b3'))
+        web3 = Web3(Web3.HTTPProvider('https://rpc.mevblocker.io'))
         gas_price = web3.eth.gas_price
         gwei_gas_price = web3.from_wei(gas_price, 'gwei')
         if int(gwei_gas_price.real) < quantity_gas:

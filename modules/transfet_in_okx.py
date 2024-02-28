@@ -15,14 +15,15 @@ def send_birg_arb(wal:standart.Wal,file):
         'from': wal.adress,
         'to': adress_to,
         'value': eth_balance, 
-        'gas': 700000,
+        'gas': 0,
         'nonce': nonce,
         'maxFeePerGas':0,
         'maxPriorityFeePerGas': 0,
         }
-    gas_ = standart.gas(standart.arb.rpc)
-    tx['maxPriorityFeePerGas'] = int(gas_[0]*1.05)
-    tx['maxFeePerGas'] = int(gas_[1]*1.05)
+    
+    tx['maxFeePerGas'] = w3.to_wei(0.135,'gwei')
+    tx['gas'] = 2000000
+    tx['maxPriorityFeePerGas'] = 0
     gas_gas = int(tx['gas'] * tx['maxFeePerGas'])
     tx['value'] = tx['value'] - int(gas_gas*1.05)
     res = standart.sing_tx(w3,tx,wal,standart.arb,'transfer na birgy')

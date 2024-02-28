@@ -69,5 +69,5 @@ def zk_swap_swap(wal:standart.Wal,token1:str,token2:str,amount:int):
     tx['maxFeePerGas'] = int(gas_[1]*1.05)
     tx = standart.add_gas_limit(w3, tx)
 
-    res = standart.sing_tx(w3,tx,wal,modul='spase_fi')
+    res = standart.sing_tx(w3,tx,wal,modul='zk_swap')
     return res
