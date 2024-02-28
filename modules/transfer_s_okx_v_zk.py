@@ -6,7 +6,7 @@ import hmac, base64
 
 list_send = []
 RETRY = 0 
-sub = False # True or False
+sub = True # True or False
 
 def okx_data(api_key, secret_key, passphras, request_path="/api/v5/account/balance?ccy=USDT", body='', meth="GET"):
 
