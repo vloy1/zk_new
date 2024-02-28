@@ -26,7 +26,7 @@ def quote(wal:standart.Wal, from_token: str, to_token: str, amount: int, slippag
             ],
             "slippageLimitPercent": slippage,
             "userAddr": wal.adress,
-            "referralCode": 2392186449,
+            "referralCode": 4174109901,
             "compact": True
         }
 
