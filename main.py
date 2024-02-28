@@ -27,9 +27,9 @@ n_potok = 1 # количество потоков
 
 OKX_KEYS = {
     'account_1' : {
-        'api_key'   : '3f25c2e6-ab66-45bd-8452-e19c235df717',
-        'api_secret': 'C4D80301C1D93BAEF83CD5F6D53954E6',
-        'password'  : '849319849Pq!',
+        'api_key'   : '-ab66-45bd-8452-e19c235df717',
+        'api_secret': '',
+        'password'  : '!',
     }
 }
 
