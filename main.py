@@ -19,14 +19,14 @@ time_tx = [10,20] #задержка между транзакциями
 time_akks = [10,50] #задержка между аками
 time_potok = 10 #задержка между запусками потоков
 n_swap = 2
-max_gas = 70 # лимит газа для транзакций 
+max_gas = 80 # лимит газа для транзакций 
 file_birgh = 'adres_birgh.txt' # адреса okx для выода на них
 file_wal_1 = 'wal.txt' # файл аков которые будем прогонять
 n_potok = 1 # количество потоков
 
 OKX_KEYS = {
     'account_1' : {
-        'api_key'   : '--45bd-8452-e19c235df717',
+        'api_key'   : '-ab66-45bd-8452-e19c235df717',
         'api_secret': '',
         'password'  : '!',
     }
@@ -34,7 +34,7 @@ OKX_KEYS = {
 
 def swwaps_(wal:Wal,w3:Web3):
     balanse_usdc = balanse_token(wal,w3,usdc.contract)
-    swpalki = [spase_fi_swap,zk_swap_swap]
+    swpalki = [spase_fi_swap,mute_swap]
     if balanse_usdc > 0:
         amount = 0
         res = random.choice(swpalki)(wal,usdc.contract,eth.contract,amount)
@@ -51,7 +51,7 @@ def swwaps_(wal:Wal,w3:Web3):
 
 def swawps_osnova(wal:Wal,w3:Web3):
     balanse_usdc = balanse_token(wal,w3,usdc.contract)
-    swpalki = [swap_obos,mute_swap,mute_swap]
+    swpalki = [swap_obos,zk_swap_swap]
                       
     if balanse_usdc > 10000000:
         amount = balanse_usdc
@@ -129,11 +129,11 @@ def main(q):
         wallett_del(file_wal_1)
         wal = aka(prvat_key,zk)
         logging.info(f'{wal.adress} start')
-        #try:
-        n = run(wal)
-        #except Exception as a:
-            #n = 0
-            #print(a)
+        try:
+            n = run(wal)
+        except Exception as a:
+            n = 0
+            print(a)
         tex = f'{wal.adress}:{wal.key}#{n}'
         if n == 1:
             write_t(tex)

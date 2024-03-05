@@ -20,7 +20,7 @@ def zk_swap_swap(wal:standart.Wal,token1:str,token2:str,amount:int):
     elif token2 == '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE':
         token2 = '0x5aea5775959fbc2557cc8789bc1bf90a239d9a91'
         value = 0
-        amount = int(apruve(token1,contractSwap,wal)*0.2)
+        amount = int(apruve(token1,contractSwap,wal))
         time.sleep(15)
 
     new_adress_token1 = Web3.to_checksum_address(token1)
